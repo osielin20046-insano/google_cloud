@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica Google Cloud - ISD</title>
+  <!-- Enlace a tu archivo diseño.css -->
+  <link rel="stylesheet" href="diseño.css">
+</head>
+<body>
+
+  <div class="card">
+    <h1>Interacción de Servicios Digitales</h1>
+    <h3>Conexión con Google Cloud Storage</h3>
+    <p>Haz clic en el botón para consultar los datos almacenados en la nube o modificar la información:</p>
+
+    <!-- Botón para cargar datos -->
+    <button onclick="obtenerDatosDeGoogleCloud()" class="btn-cargar">Cargar datos desde la Nube</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Carrera</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-cuerpo">
+        <tr>
+          <td colspan="4" style="text-align: center; color: #777;">Presiona el botón para cargar los datos...</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Botón para guardar cambios -->
+    <div class="acciones">
+      <button onclick="guardarCambios()" class="btn-guardar" id="btn-guardar" style="display: none;">Guardar Cambios</button>
+    </div>
+  </div>
+
+  <!-- Enlace a tu archivo script.js -->
+  <script src="script.js"></script>
+</body>
+</html>
