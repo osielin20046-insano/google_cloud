@@ -3,42 +3,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Práctica Google Cloud - ISD</title>
-  <link rel="stylesheet" href="diseño.css">
+  <meta name="description" content="Explorador de objetos y tablas CSV conectado a Google Cloud Storage.">
+  <title>Cloud Lab · Google Cloud Storage</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2310151c'/%3E%3Cpath d='M41 21a14 14 0 1 0 0 22' fill='none' stroke='%234d8df6' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="diseno.css">
 </head>
 <body>
 
-  <div class="card">
-    <h1>Interacción de Servicios Digitales</h1>
-    <h3>Conexión con Google Cloud Storage</h3>
-    <p>Consulta los datos de la nube:</p>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></symbol>
+    <symbol id="i-files" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5M12 3v12"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H6a4 4 0 0 1-.6-7.96 6 6 0 0 1 11.7-1.3A4.5 4.5 0 0 1 17.5 19Z"/></symbol>
+    <symbol id="i-csv" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-file-text" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h4"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></symbol>
+  </svg>
 
-    <div class="acciones-superiores">
-      <button onclick="obtenerDatosDeGoogleCloud()" class="btn-cargar">Cargar desde la Nube</button>
-      <button onclick="agregarFila()" class="btn-agregar" id="btn-agregar" style="display: none;">Agregar Alumno</button>
-    </div>
+  <div class="app">
 
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Edad</th>
-          <th>Carrera</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody id="tabla-cuerpo">
-        <tr>
-          <td colspan="5" style="text-align: center; color: #777;">Presiona el botón para cargar los datos...</td>
-        </tr>
-      </tbody>
-    </table>
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">CL</div>
+        <div class="brand-text">
+          <strong>Cloud Lab</strong>
+        </div>
+      </div>
 
-    <div class="acciones">
-      <button onclick="guardarCambios()" class="btn-guardar" id="btn-guardar" style="display: none;">Guardar Cambios</button>
-    </div>
+      <p class="nav-label">Filtros</p>
+      <nav class="nav" aria-label="Filtros de archivos">
+        <button class="nav-item is-active" data-filter="all" type="button">
+          <svg class="icon"><use href="#i-files"></use></svg>
+          <span class="nav-text">Todos</span>
+          <span class="filter-count" id="count-all">0</span>
+        </button>
+         <button class="nav-item" data-filter="csv" type="button">
+          <svg class="icon"><use href="#i-csv"></use></svg>
+          <span class="nav-text">CSV</span>
+          <span class="filter-count" id="count-csv">0</span>
+        </button>
+        <button class="nav-item" data-filter="image" type="button">
+          <svg class="icon"><use href="#i-image"></use></svg>
+          <span class="nav-text">Imágenes</span>
+          <span class="filter-count" id="count-image">0</span>
+        </button>
+        <button class="nav-item" data-filter="document" type="button">
+          <svg class="icon"><use href="#i-file-text"></use></svg>
+          <span class="nav-text">Documentos</span>
+          <span class="filter-count" id="count-document">0</span>
+        </button>
+        <button class="nav-item" data-filter="other" type="button">
+          <svg class="icon"><use href="#i-files"></use></svg>
+          <span class="nav-text">Otros</span>
+          <span class="filter-count" id="count-other">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="connection" id="connection">
+          <span class="dot" id="mode-dot"></span>
+          <div>
+            <strong id="mode-title">Conectando…</strong>
+            <small id="mode-detail">Comprobando conexión</small>
+          </div>
+        </div>
+        <div class="bucket-line">
+          <span>Bucket</span>
+          <code id="bucket-name">—</code>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div class="topbar-title">
+          <button class="btn-icon" type="button" id="btn-back" hidden aria-label="Volver al explorador">
+            <svg class="icon"><use href="#i-back"></use></svg>
+          </button>
+          <h1 id="view-title">Explorador</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-ghost" type="button" id="btn-refresh">
+            <svg class="icon"><use href="#i-refresh"></use></svg>
+            Actualizar
+          </button>
+          <button class="btn btn-primary" type="button" id="btn-primary">
+            <svg class="icon"><use href="#i-upload"></use></svg>
+            <span>Subir archivo</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="stats" aria-label="Resumen">
+        <div class="stat">
+          <span class="stat-label">Objetos</span>
+          <strong class="stat-value" id="stat-objetos">—</strong>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Tamaño total</span>
+          <strong class="stat-value" id="stat-tamano">—</strong>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Archivos CSV</span>
+          <strong class="stat-value" id="stat-csv">—</strong>
+        </div>
+      </section>
+
+      <section class="view" id="view-explorer">
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Subir archivo al bucket">
+          <svg class="icon icon-lg"><use href="#i-upload"></use></svg>
+          <strong>Arrastra un archivo o haz clic para subirlo</strong>
+          <span id="dropzone-limit">Máximo 20 MB</span>
+          <input type="file" id="file-input" hidden>
+        </div>
+
+        <div class="progress" id="upload-progress" hidden>
+          <div class="progress-info">
+            <span id="upload-name">Subiendo…</span>
+            <span id="upload-pct">0%</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="upload-bar"></div></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">
+              <h2>Objetos en el bucket</h2>
+              <span class="badge" id="count-objetos">0</span>
+            </div>
+            <div class="panel-tools">
+              <label class="search">
+                <svg class="icon"><use href="#i-search"></use></svg>
+                <input type="search" id="search-objetos" placeholder="Buscar archivos" autocomplete="off">
+              </label>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th class="col-type">Tipo</th>
+                  <th class="col-size">Tamaño</th>
+                  <th class="col-date">Modificado</th>
+                  <th class="col-actions">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-objetos">
+                <tr><td colspan="5" class="table-empty">Cargando objetos…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-file" hidden>
+        <div class="file-head">
+          <div class="file-head-main">
+            <div class="file-icon" id="file-icon">
+              <svg class="icon icon-lg"><use href="#i-files"></use></svg>
+            </div>
+            <div class="file-info">
+              <h2 id="file-name">Archivo</h2>
+              <p id="file-meta">—</p>
+            </div>
+          </div>
+          <div class="file-actions">
+            <button class="btn" type="button" id="btn-file-download">
+              <svg class="icon"><use href="#i-download"></use></svg>
+              Descargar
+            </button>
+            <button class="btn btn-danger" type="button" id="btn-file-delete">
+              <svg class="icon"><use href="#i-trash"></use></svg>
+              Eliminar
+            </button>
+          </div>
+        </div>
+
+        <div class="panel file-loading" id="file-loading" hidden>
+          <svg class="icon spin"><use href="#i-refresh"></use></svg>
+          <span>Cargando archivo…</span>
+        </div>
+
+        <div id="file-csv" hidden>
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">
+                <h2>Tabla</h2>
+                <span class="badge" id="count-filas">0</span>
+              </div>
+              <div class="panel-tools">
+                <label class="search">
+                  <svg class="icon"><use href="#i-search"></use></svg>
+                  <input type="search" id="search-filas" placeholder="Buscar en la tabla" autocomplete="off">
+                </label>
+                <button class="btn btn-primary btn-sm" type="button" id="btn-add-row">
+                  <svg class="icon"><use href="#i-plus"></use></svg>
+                  Agregar fila
+                </button>
+              </div>
+            </div>
+
+            <div class="notice" id="dataset-notice" hidden></div>
+
+            <div class="table-wrap">
+              <table class="dataset-table">
+                <thead id="dataset-head"></thead>
+                <tbody id="tabla-dataset"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel preview-panel" id="file-image" hidden>
+          <img id="preview-image" alt="Vista previa del archivo">
+        </div>
+
+        <div class="panel preview-panel" id="file-pdf" hidden>
+          <iframe id="preview-pdf" title="Vista previa del PDF"></iframe>
+        </div>
+
+        <div class="panel preview-panel" id="file-text" hidden>
+          <pre id="preview-text"></pre>
+          <p class="preview-note" id="text-note" hidden>Vista previa truncada.</p>
+        </div>
+
+        <div class="panel preview-panel" id="file-binary" hidden>
+          <div class="binary-empty">
+            <svg class="icon icon-lg"><use href="#i-files"></use></svg>
+            <strong>Vista previa no disponible</strong>
+            <span>Descarga el archivo para abrirlo con su aplicación.</span>
+            <button class="btn" type="button" id="btn-binary-download">
+              <svg class="icon"><use href="#i-download"></use></svg>
+              Descargar
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
   </div>
+
+  <dialog id="row-dialog" class="dialog">
+    <form method="dialog" id="row-form" novalidate>
+      <div class="dialog-head">
+        <div>
+          <h2 id="row-dialog-title">Agregar fila</h2>
+          <p id="row-dialog-subtitle">Completa los campos del CSV.</p>
+        </div>
+        <button class="btn-icon" type="button" data-close aria-label="Cerrar">
+          <svg class="icon"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+
+      <div class="dialog-body" id="row-fields"></div>
+      <input type="hidden" id="row-index">
+
+      <div class="dialog-foot">
+        <button class="btn btn-ghost" type="button" data-close>Cancelar</button>
+        <button class="btn btn-primary" type="submit" id="row-submit">Agregar fila</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="confirm-dialog" class="dialog dialog-sm">
+    <div class="dialog-head">
+      <div>
+        <h2 id="confirm-title">Eliminar objeto</h2>
+        <p id="confirm-message">Esta acción no se puede deshacer.</p>
+      </div>
+      <button class="btn-icon" type="button" data-close aria-label="Cerrar">
+        <svg class="icon"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+    <div class="dialog-foot">
+      <button class="btn btn-ghost" type="button" data-close>Cancelar</button>
+      <button class="btn btn-danger" type="button" id="confirm-accept">Eliminar</button>
+    </div>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
 
   <script src="script.js"></script>
 </body>
